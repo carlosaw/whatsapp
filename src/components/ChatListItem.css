@@ -9,7 +9,7 @@
     background-color: #DDD;
 }
 .chatListItem.active {
-    background-color: #DDD;
+    background-color: #EBEBEB;
 }
 .chatListItem--avatar {
     width: 50px;
