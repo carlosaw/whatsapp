@@ -1,10 +1,13 @@
-/* eslint-disable import/no-anonymous-default-export */
 import React, { useState, useEffect} from 'react';
 import './App.css';
+
+import Api from './Api';
 
 import ChatListItem from './components/ChatListItem';
 import ChatIntro from './components/ChatIntro';
 import ChatWindow from './components/ChatWindow';
+import NewChat from './components/NewChat';
+import Login from './components/Login';
 
 import DonutLargeIcon from '@material-ui/icons/DonutLarge';
 import ChatIcon from '@material-ui/icons/Chat';
@@ -13,25 +16,51 @@ import SearchIcon from '@material-ui/icons/Search';
 
 export default () => {
 
-	const [chatlist, setChatList] = useState([
-		{chatId: 1, title: 'Fulano de tal', image: 'https://www.w3schools.com/howto/img_avatar2.png'},
-		{chatId: 2, title: 'Fulano de tal', image: 'https://www.w3schools.com/howto/img_avatar2.png'},
-		{chatId: 3, title: 'Fulano de tal', image: 'https://www.w3schools.com/howto/img_avatar2.png'},
-		{chatId: 4, title: 'Fulano de tal', image: 'https://www.w3schools.com/howto/img_avatar2.png'}
-	]);
+	const [chatlist, setChatList] = useState([]);
 	const [activeChat, setActiveChat] = useState({});
+	const [user, setUser] = useState({
+		id: 'qAloR49gmgMOxgQYriOANQyBSne2',
+		
+		name: 'Carlos Alberto',
+		avatar: 'https://www.w3schools.com/howto/img_avatar.png'
+	});
+	const [showNewChat, setShowNewChat] = useState(false);
+
+	const handleNewChat = () => {
+		setShowNewChat(true);
+	}
+
+	const handleLoginData = async (u) => {
+		let newUser = {
+			id: u.uid,
+			name: u.displayName,
+			avatar: u.photoURL
+		};
+		await Api.addUser(newUser);
+		setUser(newUser);
+	}
+
+	if(user === null) {
+		return (<Login onReceive={handleLoginData} />);
+	}
+	
 
 	return (
 		<div className="app-window">
 			<div className="sidebar">
-
+				<NewChat
+					chatlist={chatlist}
+					user={user} 
+					show={showNewChat}
+					setShow={setShowNewChat}
+				/>
 				<header>
-					<img className="header--avatar" src="https://www.w3schools.com/howto/img_avatar2.png" alt="" />
+					<img className="header--avatar" src={user.avatar} alt="" />
 					<div className="header--buttons">
 						<div className="header--btn">
 							<DonutLargeIcon style={{color: '#919191'}} />
 						</div>
-						<div className="header--btn">
+						<div onClick={handleNewChat} className="header--btn">
 							<ChatIcon style={{color: '#919191'}} />
 						</div>
 						<div className="header--btn">
@@ -62,7 +91,9 @@ export default () => {
 
 			<div className="contentarea">
 				{activeChat.chatId !== undefined &&
-					<ChatWindow />
+					<ChatWindow 
+						user={user}
+					/>
 				}
 				{activeChat.chatId === undefined &&
 					<ChatIntro />
