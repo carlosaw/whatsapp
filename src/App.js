@@ -19,12 +19,18 @@ export default () => {
 	const [chatlist, setChatList] = useState([]);
 	const [activeChat, setActiveChat] = useState({});
 	const [user, setUser] = useState({
-		id: 'qAloR49gmgMOxgQYriOANQyBSne2',
-		
-		name: 'Carlos Alberto',
-		avatar: 'https://www.w3schools.com/howto/img_avatar.png'
+		id: 'nXeNYGAseSL7bd0EhdTo',		
+		name: 'Carlos Albert',
+		avatar: 'https://www.w3schools.com/howto/img_avatar2.png'
 	});
 	const [showNewChat, setShowNewChat] = useState(false);
+
+	useEffect(()=>{
+		if(user !== null) {
+			let unsub = Api.onChatList(user.id, setChatList);
+			return unsub;
+		}
+	}, [user]);
 
 	const handleNewChat = () => {
 		setShowNewChat(true);
