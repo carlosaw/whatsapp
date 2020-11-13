@@ -19,9 +19,9 @@ export default () => {
 	const [chatlist, setChatList] = useState([]);
 	const [activeChat, setActiveChat] = useState({});
 	const [user, setUser] = useState({
-		id: 'nXeNYGAseSL7bd0EhdTo',		
-		name: 'Carlos Albert',
-		avatar: 'https://www.w3schools.com/howto/img_avatar2.png'
+		id: 'qAloR49gmgMOxgQYriOANQyBSne2',
+		name: 'Charles Albert',
+		avatar: 'https://www.w3schools.com/howto/img_avatar.png'
 	});
 	const [showNewChat, setShowNewChat] = useState(false);
 
@@ -99,6 +99,7 @@ export default () => {
 				{activeChat.chatId !== undefined &&
 					<ChatWindow 
 						user={user}
+						data={activeChat}
 					/>
 				}
 				{activeChat.chatId === undefined &&

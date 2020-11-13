@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import EmojiPicker from 'emoji-picker-react';
 import './ChatWindow.css';
 
+import Api from '../Api';
+
 import MessageItem from './MessageItem';
 
 import SearchIcon from '@material-ui/icons/Search';
@@ -12,7 +14,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import SendIcon from '@material-ui/icons/Send';
 import MicIcon from '@material-ui/icons/Mic';
 
-export default ({user}) => {
+export default ({user, data}) => {
 
     const body = useRef();
 
@@ -25,35 +27,14 @@ export default ({user}) => {
     const [emojiOpen, setEmojiOpen] = useState(false);
     const [text, setText] = useState('');
     const [listening, setListening] = useState(false);
-    const [list, setList] = useState([
-        {author: 123, body: 'Bla bla bla'},
-        {author: 123, body: 'Bla bla'},
-        {author: 1234, body: 'Bla bla bla bla'},
-        {author: 123, body: 'Bla bla bla'},
-        {author: 123, body: 'Bla bla'},
-        {author: 1234, body: 'Bla bla bla bla'},
-        {author: 123, body: 'Bla bla bla'},
-        {author: 123, body: 'Bla bla'},
-        {author: 1234, body: 'Bla bla bla bla'},
-        {author: 123, body: 'Bla bla bla'},
-        {author: 123, body: 'Bla bla'},
-        {author: 1234, body: 'Bla bla bla bla'},
-        {author: 123, body: 'Bla bla bla'},
-        {author: 123, body: 'Bla bla'},
-        {author: 1234, body: 'Bla bla bla bla'},
-        {author: 123, body: 'Bla bla bla'},
-        {author: 123, body: 'Bla bla'},
-        {author: 1234, body: 'Bla bla bla bla'},
-        {author: 123, body: 'Bla bla bla'},
-        {author: 123, body: 'Bla bla'},
-        {author: 1234, body: 'Bla bla bla bla'},
-        {author: 123, body: 'Bla bla bla'},
-        {author: 123, body: 'Bla bla'},
-        {author: 1234, body: 'Bla bla bla bla'},
-        {author: 123, body: 'Bla bla bla'},
-        {author: 123, body: 'Bla bla'},
-        {author: 1234, body: 'Bla bla bla bla'},
-    ]);
+    const [list, setList] = useState([]);
+    const [users, setUsers] = useState([]);
+
+    useEffect(()=>{// Monitorar mensagens
+        setList([]);
+        let unsub = Api.onChatContent(data.chatId, setList, setUsers);
+        return unsub;
+    }, [data.chatId]);
 
     useEffect(()=>{
         if(body.current.scrollHeight > body.current.offsetHeight) {
@@ -89,8 +70,18 @@ export default ({user}) => {
         }
     }
 
+    const handleInputKeyUp = (e) => {
+        if(e.keyCode == 13) {
+            handleSendClick();
+        }
+    }
+
     const handleSendClick = () => {
-        
+        if(text !== '') {
+            Api.sendMessage(data, user.id, 'text', text, users);
+            setText('');
+            setEmojiOpen(false);
+        }
     }
 
     return (
@@ -98,8 +89,8 @@ export default ({user}) => {
 
             <div className="chatWindow--header">
                 <div className="chatWindow--headerinfo">
-                    <img className="chatWindow--avatar" src="https://www.w3schools.com/howto/img_avatar2.png" alt="" />
-                    <div className="chatWindow--name">Carlos Sampaio</div>
+                    <img className="chatWindow--avatar" src={data.image} alt="" />
+                    <div className="chatWindow--name">{data.title}</div>
                 </div>
 
                 <div className="chatWindow--headerbuttons">
@@ -159,6 +150,7 @@ export default ({user}) => {
                         placeholder="Digite uma mensagem"
                         value={text}
                         onChange={e=>setText(e.target.value)}
+                        onKeyUp={handleInputKeyUp}
                     />
                 </div>
 

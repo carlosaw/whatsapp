@@ -25,7 +25,7 @@ export default ({onClick, active, data}) => {
             <div className="chatListItem--lines">
                 <div className="chatListItem--line">
                     <div className="chatListItem--name">{data.title}</div>
-                    <div className="chatListItem--date">23:00</div>
+                    <div className="chatListItem--date">{time}</div>
                 </div>
                 <div className="chatListItem--line">
                     <div className="chatListItem--lastMsg">
