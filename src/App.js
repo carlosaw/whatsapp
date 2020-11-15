@@ -18,11 +18,7 @@ export default () => {
 
 	const [chatlist, setChatList] = useState([]);
 	const [activeChat, setActiveChat] = useState({});
-	const [user, setUser] = useState({
-		id: 'qAloR49gmgMOxgQYriOANQyBSne2',
-		name: 'Charles Albert',
-		avatar: 'https://www.w3schools.com/howto/img_avatar.png'
-	});
+	const [user, setUser] = useState(null);
 	const [showNewChat, setShowNewChat] = useState(false);
 
 	useEffect(()=>{

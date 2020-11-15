@@ -1,10 +1,10 @@
 // eslint-disable-next-line
 export default {
-  apiKey: "AIzaSyB7CGmLG18zpdcI2gsPfn1hUqiu3NVSAP4",
-  authDomain: "whatsappclone-98b30.firebaseapp.com",
-  databaseURL: "https://whatsappclone-98b30.firebaseio.com",
-  projectId: "whatsappclone-98b30",
-  storageBucket: "whatsappclone-98b30.appspot.com",
-  messagingSenderId: "527709817616",
-  appId: "1:527709817616:web:0910f613b05f526c2c3395"
-  };
+  apiKey: "AIzaSyBI5UASibCNUg85qusBaVJtza_E0MbZEbA",
+  authDomain: "whats-a403e.firebaseapp.com",
+  databaseURL: "https://whats-a403e.firebaseio.com",
+  projectId: "whats-a403e",
+  storageBucket: "whats-a403e.appspot.com",
+  messagingSenderId: "616952281158",
+  appId: "1:616952281158:web:15031aea633ff1dbfc7247"
+};

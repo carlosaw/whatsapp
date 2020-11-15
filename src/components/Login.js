@@ -14,7 +14,7 @@ export default ({onReceive}) => {
 
     return (
         <div className="login">
-            <button onClick={handleFacebookLogin}>Logar com Facebook</button>
+            <button onClick={handleFacebookLogin}>Fazer login com Google</button>
         </div>
     );
 }
