@@ -1,3 +1,12 @@
+# ReactJS 
+## Módulo 10: Projeto: DevsFood
+
+# Instalar dependências
+## npm install
+
+# Rodar o projeto
+## npm start
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
