@@ -1,5 +1,5 @@
 # ReactJS 
-## Módulo 10: Projeto: DevsFood
+## Módulo 11: Clone do WattsApp
 
 # Instalar dependências
 ## npm install
