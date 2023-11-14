@@ -14,7 +14,7 @@ import ChatIcon from '@material-ui/icons/Chat';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import SearchIcon from '@material-ui/icons/Search';
 
-export default () => {
+const Chat = () => {
 
 	const [chatlist, setChatList] = useState([]);
 	const [activeChat, setActiveChat] = useState({});
@@ -106,3 +106,5 @@ export default () => {
 		</div>
 	);
 }
+
+export default Chat;

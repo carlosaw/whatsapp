@@ -14,7 +14,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import SendIcon from '@material-ui/icons/Send';
 import MicIcon from '@material-ui/icons/Mic';
 
-export default ({user, data}) => {
+const ChatWindow = ({user, data}) => {
 
     const body = useRef();
 
@@ -171,3 +171,5 @@ export default ({user, data}) => {
         </div>
     );
 }
+
+export default ChatWindow;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './ChatListItem.css';
 
-export default ({onClick, active, data}) => {
+const ChatListItem = ({onClick, active, data}) => {
 
     const [time, setTime] = useState('');
 
@@ -36,3 +36,5 @@ export default ({onClick, active, data}) => {
         </div>
     );
 }
+
+export default ChatListItem;

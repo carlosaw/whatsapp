@@ -7,7 +7,7 @@ import firebaseConfig from './firebaseConfig';
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const db = firebaseApp.firestore();
 
-export default {
+const Fire = {
     fbPopup:async () => {
         const provider = new firebase.auth.GoogleAuthProvider();
         let result = await firebaseApp.auth().signInWithPopup(provider);
@@ -115,7 +115,7 @@ export default {
                 let chats = [...uData.chats];
 
                 for(let e in chats) {
-                    if(chats[e].chatId == chatData.chatId) {
+                    if(chats[e].chatId === chatData.chatId) {
                         chats[e].lastMessage = body;
                         chats[e].lastMessageDate = now;
                     }
@@ -127,3 +127,5 @@ export default {
         }
     }
 };
+
+export default Fire;

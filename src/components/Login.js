@@ -2,7 +2,7 @@ import React from 'react';
 import './Login.css';
 import Api from '../Api';
 
-export default ({onReceive}) => {
+const Login = ({onReceive}) => {
     const handleFacebookLogin = async () => {
         let result = await Api.fbPopup();
         if(result) {
@@ -18,3 +18,5 @@ export default ({onReceive}) => {
         </div>
     );
 }
+
+export default Login;
